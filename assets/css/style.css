@@ -1,0 +1,69 @@
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+
+body {
+   font-family: sans-serif;
+}
+/* HEADER */
+#app_header {
+   height: 85px;
+   background-color: white;
+   padding: 1rem;
+
+   font-size: 1.3rem;
+
+   /* felx */
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#play_btn {
+   height: 50%;
+   padding: 0 2rem;
+}
+/* MAIN */
+#app_main {
+   height: calc(100vh - 145px);
+   background-color: aquamarine;
+}
+
+.container {
+   max-width: 1200px;
+   height: 100%;
+   width: 40%;
+   margin: auto;
+   padding: 1rem 0;
+
+   /* felx */
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.cell {
+   /* width: calc(100% / 10); */
+   border: 1px solid;
+   aspect-ratio: 1;
+
+   /* flex */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* bg for script */
+.active {
+   background-color: rgb(31, 105, 202);
+}
+/* FOOTER */
+#app_footer{
+   height: 60px;
+   padding: 1.5rem;
+}
+
+.p_foot {
+   font-size: 20px;
+}
