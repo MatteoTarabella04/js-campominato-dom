@@ -47,6 +47,9 @@ playButtonElement.addEventListener('click', function () {
    // creo le celle
    generateCells(cellsNumber, containerElement);
 
+   // genero le bombe
+   generateBombs(cellsNumber);
+
    // seleziono tutti gli elementi con calsse "cell"
    const cellEl = document.querySelectorAll('.cell');
 
@@ -99,4 +102,26 @@ function generateCells(totCells, container) {
       containerElement.insertAdjacentElement('beforeend', markupEl);
       //containerElement.innerHTML += markupEl;
    }
+}
+
+// funzione che genera le bombe
+function generateBombs(cellsNum) {
+   // dichiaro l'array che conterrà le bombe
+   const bombsArray = [];
+
+   // ciclo che genera nemeri random da 1 al numero delle celle per 16 volte
+   for (let i = 0; i < 16; i++) {
+      let bomb = Math.floor(Math.random() * cellsNum) + 1;
+      console.log(bomb);
+
+      while (bombsArray.includes(bomb)) {
+         bomb = Math.floor(Math.random() * cellsNum) + 1;
+
+      }
+      bombsArray.push(bomb);
+
+   }
+
+   return bombsArray;
+
 }
