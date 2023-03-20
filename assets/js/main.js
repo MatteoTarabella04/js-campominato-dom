@@ -148,6 +148,7 @@ function selectedCell(cellElements, bombsArray, score) {
 
             score++;
 
+            // se il punteggio è uguale alla differenza tra il numero delle celle e il numero delle bombe: vittoria!
             if (score == cellElements.length - 16) {
                setTimeout(() => {
                   alert(`YOU WIN! Your Score: ${score}`);
