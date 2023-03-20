@@ -47,13 +47,16 @@ playButtonElement.addEventListener('click', function () {
    // creo le celle
    generateCells(cellsNumber, containerElement);
 
+   // inizializzo il punteggio a '0'
+   let score = 0;
+
    // genero le bombe
    const bombs = generateBombs(cellsNumber);
    console.log(bombs);
 
    // seleziono tutti gli elementi con calsse "cell" e assegno la classe active quando vengono cliccate
    const cellEl = document.querySelectorAll('.cell');
-   selectedCell(cellEl, bombs);
+   selectedCell(cellEl, bombs, score);
 
 
 })
@@ -114,12 +117,14 @@ function generateBombs(cellsNum) {
 
    }
 
+   // sistemo l'array per facilitarmi il controllo finale
+   bombsArray.sort(function(a, b){return a - b});
    return bombsArray;
 
 }
 
 // fuunzione che cambia il bg alle celle
-function selectedCell(cellElements, bombsArray) {
+function selectedCell(cellElements, bombsArray, score) {
 
    for (let i = 0; i < cellElements.length; i++) {
 
@@ -140,6 +145,15 @@ function selectedCell(cellElements, bombsArray) {
          } else {
             cell.classList.add('active');
             console.log(Number(this.innerText));
+
+            score++;
+
+            if (score == cellElements.length - 16) {
+               setTimeout(() => {
+                  alert(`YOU WIN! Your Score: ${score}`);
+                  location.reload();
+               }, 200);
+            }
          }
 
       })
