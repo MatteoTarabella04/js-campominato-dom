@@ -48,20 +48,13 @@ playButtonElement.addEventListener('click', function () {
    generateCells(cellsNumber, containerElement);
 
    // genero le bombe
-   generateBombs(cellsNumber);
+   const bombs = generateBombs(cellsNumber);
+   console.log(bombs);
 
-   // seleziono tutti gli elementi con calsse "cell"
+   // seleziono tutti gli elementi con calsse "cell" e assegno la classe active quando vengono cliccate
    const cellEl = document.querySelectorAll('.cell');
+   selectedCell(cellEl);
 
-   for (let i = 0; i < cellEl.length; i++) {
-
-      const cell = cellEl[i];
-
-      cell.addEventListener('click', function (e) {
-         this.classList.add('active');
-         console.log(Number(this.innerText));
-      });
-   }
 
 })
 
@@ -112,7 +105,6 @@ function generateBombs(cellsNum) {
    // ciclo che genera nemeri random da 1 al numero delle celle per 16 volte
    for (let i = 0; i < 16; i++) {
       let bomb = Math.floor(Math.random() * cellsNum) + 1;
-      console.log(bomb);
 
       while (bombsArray.includes(bomb)) {
          bomb = Math.floor(Math.random() * cellsNum) + 1;
@@ -124,4 +116,21 @@ function generateBombs(cellsNum) {
 
    return bombsArray;
 
+}
+
+// fuunzione che cambia il bg alle celle
+function selectedCell(cellElement){
+   
+   // inizializzo una variabile false per il controllo
+   //let notBomb = false;
+
+   for (let i = 0; i < cellElement.length; i++) {
+
+      const cell = cellElement[i];
+
+      cell.addEventListener('click', function (e) {
+         this.classList.add('active');
+         console.log(Number(this.innerText));
+      });
+   }
 }

@@ -47,6 +47,7 @@ body {
    /* width: calc(100% / 10); */
    border: 1px solid;
    aspect-ratio: 1;
+   cursor: pointer;
 
    /* flex */
    display: flex;
