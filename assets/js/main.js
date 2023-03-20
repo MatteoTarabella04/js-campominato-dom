@@ -53,7 +53,7 @@ playButtonElement.addEventListener('click', function () {
 
    // seleziono tutti gli elementi con calsse "cell" e assegno la classe active quando vengono cliccate
    const cellEl = document.querySelectorAll('.cell');
-   selectedCell(cellEl);
+   selectedCell(cellEl, bombs);
 
 
 })
@@ -119,18 +119,29 @@ function generateBombs(cellsNum) {
 }
 
 // fuunzione che cambia il bg alle celle
-function selectedCell(cellElement){
-   
-   // inizializzo una variabile false per il controllo
-   //let notBomb = false;
+function selectedCell(cellElements, bombsArray) {
 
-   for (let i = 0; i < cellElement.length; i++) {
+   for (let i = 0; i < cellElements.length; i++) {
 
-      const cell = cellElement[i];
+      const cell = cellElements[i];
 
-      cell.addEventListener('click', function (e) {
-         this.classList.add('active');
-         console.log(Number(this.innerText));
-      });
+      cell.addEventListener('click', function () {
+
+         // se la cella contiene lo stesso numero contenuto nell'array delle bombe si colora di rosso: Esce il messaggio 'hai perso'. Altrimenti si assegna classe active e si può continuare
+         if (bombsArray.includes(Number(cell.innerText))) {
+            cell.style.backgroundColor = 'red';
+
+            // imposto un timer affinche si possa vedere la casella selezionata in rosso prima che si clicchi sull'ok dell'alert che ricaricherà la pagina
+            setTimeout(() => {
+               alert('YOU LOSE');
+               location.reload();
+            }, 200);
+
+         } else {
+            cell.classList.add('active');
+            console.log(Number(this.innerText));
+         }
+
+      })
    }
 }
